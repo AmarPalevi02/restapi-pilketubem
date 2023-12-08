@@ -13,7 +13,7 @@ const getAllUser = async(req, res, next) => {
     }
 }
 
-const sigin = async(req, res, next) => {
+const sigup = async(req, res, next) => {
     try {
         const result = await createUsers(req)
 
@@ -25,4 +25,4 @@ const sigin = async(req, res, next) => {
     }
 }
 
-module.exports = {getAllUser, sigin}
+module.exports = {getAllUser, sigup}

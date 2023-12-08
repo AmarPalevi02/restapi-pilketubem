@@ -22,7 +22,13 @@ const Users = db.define('users', {
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
+    },
+    role: {
+        type: DataTypes.ENUM('admin', 'user'),
+        allowNull: false,
+        defaultValue: 'user', 
     },
 }, {
     hooks: {

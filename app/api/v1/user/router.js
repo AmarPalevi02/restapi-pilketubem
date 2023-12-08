@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express()
-const {getAllUser, sigin} = require('./controler')
+const {getAllUser, sigup} = require('./controler')
 
 router.get('/index', getAllUser)
-router.post('/sigin', sigin)
+router.post('/sigup', sigup)
 
 module.exports = router
