@@ -1,9 +1,8 @@
 const Users = require('../api/v1/user/model')
-const BadRequestError = require('../errors')
+const { BadRequestError, Unauthorized } = require('../errors')
 
-
-const createUsers = async(req, res, next) => {
-    const {nim, name, email, password } = req.body;
+const createUsers = async (req, res, next) => {
+    const { nim, name, email, password } = req.body;
     const role = 'user'
 
     const result = await Users.create({
@@ -13,22 +12,25 @@ const createUsers = async(req, res, next) => {
         password,
         role
     })
-    // if(req.body.email === result.email) console.log('email sudah terdaftar')
 
     return result
 }
 
-const sigin = async(req) => {
-    const {nim, password} = req.body
+const siginUser = async (req) => {
+    const { nim, password } = req.body
 
-    if(!nim || !password) throw new BadRequestError('Akun Anda Tidaak Ada')
+    if (!nim || !password) throw new BadRequestError('Akun Anda Tidaak Ada')
 
-    const result = await Users.findOne({nin: nim })
+    const result = await Users.findOne({ where: { nim } })
 
-    if(!result) throw new BadRequestError('invalid credential')
+    if (!result) throw new Unauthorized('NIM tidak di temukan')
 
-    // const  
-} 
+    const isPassworCorecct = await result.comparePassword(password)
+
+    if (!isPassworCorecct) throw new Unauthorized('password slah')
+
+    return result
+}
 
 const getUsers = async (req) => {
     const result = await Users.findAll();
@@ -39,5 +41,5 @@ const getUsers = async (req) => {
 module.exports = {
     getUsers,
     createUsers,
-    sigin
+    siginUser
 }

@@ -1,9 +1,9 @@
-const {getUsers, createUsers} = require('../../../service/user')
+const {getUsers, createUsers, siginUser} = require('../../../service/user')
 const { StatusCodes } = require("http-status-codes")
 
 const getAllUser = async(req, res, next) => {
     try {
-        const result = await  getUsers(req)
+        const result = await getUsers(req)
 
         res.status(StatusCodes.OK).json({
             data: result
@@ -25,4 +25,20 @@ const sigup = async(req, res, next) => {
     }
 }
 
-module.exports = {getAllUser, sigup}
+const sigin = async(req, res, next) => {
+    try {
+        const result = await siginUser(req)
+
+        res.status(StatusCodes.OK).json({
+            data: {data: result}
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+module.exports = {
+    getAllUser, 
+    sigup, 
+    sigin
+}

@@ -10,7 +10,8 @@ const Users = db.define('users', {
     },
     nim: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
     },
     name: {
         type: DataTypes.STRING,
@@ -24,36 +25,30 @@ const Users = db.define('users', {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
+        validate: {
+            isEmail: true,
+        },
     },
     role: {
         type: DataTypes.ENUM('admin', 'user'),
         allowNull: false,
-        defaultValue: 'user', 
+        defaultValue: 'user',
     },
 }, {
     hooks: {
-        beforeCreate: async (user) => {
-            const hashedPassword = await Users.hashPassword(user.password);
-            user.password = hashedPassword;
-        },
         beforeSave: async (user) => {
             if (user.changed('password')) {
-                const hashedPassword = await Users.hashPassword(user.password);
+                const saltRounds = 10;
+                const hashedPassword = await bcrypt.hash(user.password, saltRounds);
                 user.password = hashedPassword;
             }
         }
     },
 });
 
-// Fungsi untuk menghash password
-Users.hashPassword = async (password) => {
-    const saltRounds = 10;
-    return bcrypt.hash(password, saltRounds);
-};
-
-// Fungsi untuk membandingkan password
 Users.prototype.comparePassword = async function (candidatePassword) {
-    return bcrypt.compare(candidatePassword, this.password);
+    const isMatch = await bcrypt.compare(candidatePassword, this.password);
+    return isMatch;
 };
 
 module.exports = Users;
