@@ -27,7 +27,7 @@ const users = require('./app/api/v1/user/router')
 
 const v1 = '/api/v1'
 
-app.use(`${v1}/cms`, users)
+app.use(`${v1}`, users)
 
 app.use(errorHendelerMiddlewares)
 app.use(NotFound)

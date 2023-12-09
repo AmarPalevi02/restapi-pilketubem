@@ -6,27 +6,55 @@ const Users = db.define('users', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true,    
     },
     nim: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-    },
+        validate: {
+            notEmpty: {
+                msg: "NIM harus diisi"
+            },
+        }
+    },    
     name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Nama harus diisi"
+            },
+            len: {
+                args: [3],
+                msg: "Nama minimal harus memiliki panjang 6 karakter"
+            }
+        }
     },
     password: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Password harus diisi"
+            },
+            len: {
+                args: [6],
+                msg: "Password minimal harus memiliki panjang 6 karakter"
+            }
+        }
     },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
         validate: {
-            isEmail: true,
+            isEmail: {
+                msg: "Format email tidak valid"
+            },
+            notEmpty: {
+                msg: "Email harus diisi"
+            }
         },
     },
     role: {
