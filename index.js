@@ -23,14 +23,16 @@ app.get('/', (req, res) => {
 })
 
 const usersRouter = require('./app/api/v1/user/router')
-const adminRouter =  require('./app/api/v1/admin/router') 
+const adminRouter = require('./app/api/v1/admin/router')
 const imagesRouter = require('./app/api/v1/images/router')
+const himaRouter = require('./app/api/v1/categoriesHiMA/router')
 
 const v1 = '/api/v1'
 
 app.use(`${v1}`, usersRouter)
 app.use(`${v1}`, adminRouter)
 app.use(`${v1}/cms`, imagesRouter)
+app.use(`${v1}/cms`, himaRouter)
 
 app.use(errorHendelerMiddlewares)
 app.use(NotFound)
