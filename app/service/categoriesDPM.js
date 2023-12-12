@@ -18,6 +18,13 @@ const createDPM = async (req) => {
     return result
 }
 
+const showAll = async() => {
+    const result = await categoriesDPM.findAll() 
+
+    return result
+}
+
 module.exports = {
-    createDPM
+    createDPM,
+    showAll
 }

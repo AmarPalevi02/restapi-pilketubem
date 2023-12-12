@@ -1,6 +1,6 @@
 const categoriesBEM = require('../api/v1/categoriesBEM/model')
 
-const createBEM = async(req) => {
+const createBEM = async (req) => {
     const {
         name,
         imageId,
@@ -18,6 +18,13 @@ const createBEM = async(req) => {
     return result
 }
 
+const showAll = async () => {
+    const result = await categoriesBEM.findAll()
+
+    return result
+}
+
 module.exports = {
-    createBEM
+    createBEM,
+    showAll
 }

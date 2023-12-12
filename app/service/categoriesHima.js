@@ -18,6 +18,13 @@ const createHima = async (req) => {
     return result
 }
 
+const showAll = async() => {
+    const result = await categoriesHIMA()
+
+    return result
+}
+
 module.exports = {
-    createHima
+    createHima,
+    showAll
 }
