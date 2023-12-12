@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes')
-const { createDPM, showAll } = require('../../../service/categoriesDPM')
+const { createDPM, showAll, deleteDPM } = require('../../../service/categoriesDPM')
 
 const create = async (req, res, next) => {
     try {
@@ -25,7 +25,20 @@ const index = async (req, res, next) => {
     }
 }
 
+const deletOne = async (req, res, next) => {
+    try {
+        const result = await deleteDPM(req)
+
+        res.status(StatusCodes.OK).json({
+            data: result
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     create,
-    index
+    index,
+    deletOne
 }
