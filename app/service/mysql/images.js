@@ -1,5 +1,5 @@
-const Image = require('../api/v1/images/model')
-const { NotFoundError } = require('../errors')
+const Image = require('../../api/v1/images/model')
+const { NotFoundError } = require('../../errors')
 
 // Generate URL setelah submit
 const generateUrlImage = async (req) => {

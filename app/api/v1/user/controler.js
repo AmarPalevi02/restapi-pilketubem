@@ -1,7 +1,7 @@
-const {getUsers, createUsers, siginUser} = require('../../../service/user')
+const { getUsers, createUsers, siginUser } = require('../../../service/mysql/user')
 const { StatusCodes } = require("http-status-codes")
 
-const getAllUser = async(req, res, next) => {
+const getAllUser = async (req, res, next) => {
     try {
         const result = await getUsers(req)
 
@@ -13,7 +13,7 @@ const getAllUser = async(req, res, next) => {
     }
 }
 
-const sigup = async(req, res, next) => {
+const sigup = async (req, res, next) => {
     try {
         const result = await createUsers(req)
 
@@ -25,12 +25,12 @@ const sigup = async(req, res, next) => {
     }
 }
 
-const sigin = async(req, res, next) => {
+const sigin = async (req, res, next) => {
     try {
         const result = await siginUser(req)
 
         res.status(StatusCodes.OK).json({
-            data: {data: result}
+            data: { data: result }
         })
     } catch (error) {
         next(error)
@@ -38,7 +38,7 @@ const sigin = async(req, res, next) => {
 }
 
 module.exports = {
-    getAllUser, 
-    sigup, 
+    getAllUser,
+    sigup,
     sigin
 }

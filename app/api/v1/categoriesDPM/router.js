@@ -4,6 +4,6 @@ const { create, index, deletOne} = require('./controller')
 
 route.post('/dpm', create)
 route.get('/dpm', index)
-route.delete('/dpm/:id', index)
+route.delete('/dpm/:id', deletOne)
 
 module.exports = route

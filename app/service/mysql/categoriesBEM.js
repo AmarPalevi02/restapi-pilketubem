@@ -1,5 +1,5 @@
-const categoriesBEM = require('../api/v1/categoriesBEM/model')
-const { BadRequestError } = require('../errors')
+const categoriesBEM = require('../../api/v1/categoriesBEM/model')
+const { BadRequestError } = require('../../errors')
 
 const createBEM = async (req) => {
     const {

@@ -1,5 +1,5 @@
-const categoriesDPM = require('../api/v1/categoriesDPM/model')
-const { BadRequestError } = require('../errors')
+const categoriesDPM = require('../../api/v1/categoriesDPM/model')
+const { BadRequestError } = require('../../errors')
 
 const createDPM = async (req) => {
     const {

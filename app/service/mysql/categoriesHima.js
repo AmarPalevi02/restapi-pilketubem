@@ -1,5 +1,5 @@
-const categoriesHIMA = require('../../app/api/v1/categoriesHiMA/mode')
-const { BadRequestError } = require('../errors')
+const categoriesHIMA = require('../../api/v1/categoriesHiMA/mode')
+const { BadRequestError } = require('../../errors')
 
 const createHima = async (req) => {
     const {

@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes')
-const { createDPM, showAll, deleteDPM } = require('../../../service/categoriesDPM')
+const { createDPM, showAll, deleteDPM } = require('../../../service/mysql/categoriesDPM')
 
 const create = async (req, res, next) => {
     try {

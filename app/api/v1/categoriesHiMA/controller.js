@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes')
-const { createHima, showAll, deleteHima } = require('../../../service/categoriesHima')
+const { createHima, showAll, deleteHima } = require('../../../service/mysql/categoriesHima')
 
 const create = async (req, res, next) => {
     try {
@@ -13,7 +13,7 @@ const create = async (req, res, next) => {
     }
 }
 
-const index = async(req, res, next) => {
+const index = async (req, res, next) => {
     try {
         const result = await showAll()
 
@@ -25,7 +25,7 @@ const index = async(req, res, next) => {
     }
 }
 
-const deletOne = async(req, res, next) => {
+const deletOne = async (req, res, next) => {
     try {
         const result = await deleteHima(req)
 

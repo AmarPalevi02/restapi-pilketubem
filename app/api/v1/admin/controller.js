@@ -1,4 +1,4 @@
-const { createAdmin, siginAdmin } = require('../../../service/admin')
+const { createAdmin, siginAdmin } = require('../../../service/mysql/admin')
 const { StatusCodes } = require('http-status-codes')
 
 const SigUp = async (req, res, next) => {

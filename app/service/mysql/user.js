@@ -1,5 +1,5 @@
-const Users = require('../api/v1/user/model')
-const { BadRequestError, Unauthorized } = require('../errors')
+const Users = require('../../api/v1/user/model')
+const { BadRequestError, Unauthorized } = require('../../errors')
 
 const createUsers = async (req, res, next) => {
     const { nim, name, email, password } = req.body;

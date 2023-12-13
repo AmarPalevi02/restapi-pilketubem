@@ -1,5 +1,5 @@
-const Admin = require('../api/v1/admin/model')
-const { BadRequestError, Unauthorized } = require('../errors')
+const Admin = require('../../api/v1/admin/model')
+const { BadRequestError, Unauthorized } = require('../../errors')
 
 const createAdmin = async (req) => {
     const { email, password } = req.body
@@ -17,15 +17,15 @@ const createAdmin = async (req) => {
 const siginAdmin = async (req) => {
     const { email, password } = req.body
 
-    if(!email || !password) throw new BadRequestError('Interna credential')
+    if (!email || !password) throw new BadRequestError('Interna credential')
 
     const admin = await Admin.findOne({ where: { email } })
-    
-    if(!admin) throw new Unauthorized('Email tidak di temukan')
+
+    if (!admin) throw new Unauthorized('Email tidak di temukan')
 
     const isPassworCorecct = await admin.comparePassword(password)
 
-    if(!isPassworCorecct) throw new Unauthorized('Password salah')
+    if (!isPassworCorecct) throw new Unauthorized('Password salah')
 
     return admin
 }

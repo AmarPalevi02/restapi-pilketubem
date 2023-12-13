@@ -1,4 +1,4 @@
-const { createImages } = require('../../../service/images')
+const { createImages } = require('../../../service/mysql/images')
 const { StatusCodes } = require('http-status-codes')
 
 const upload = async (req, res, next) => {
