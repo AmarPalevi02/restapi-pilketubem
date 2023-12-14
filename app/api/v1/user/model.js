@@ -62,6 +62,9 @@ const Users = db.define('users', {
         allowNull: false,
         defaultValue: 'user',
     },
+    // otp: {
+    //     type:
+    // }
 }, {
     hooks: {
         beforeSave: async (user) => {

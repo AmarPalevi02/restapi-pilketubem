@@ -1,3 +1,4 @@
+const { where } = require('sequelize')
 const categoriesDPM = require('../../api/v1/categoriesDPM/model')
 const { BadRequestError } = require('../../errors')
 
@@ -35,8 +36,32 @@ const deleteDPM = async (req) => {
     return result
 }
 
+const updateDPM = async (req) => {
+    const { id } = req.params
+    const {
+        name,
+        imageId,
+        about,
+        visi
+    } = req.body
+
+    const check = await categoriesDPM.findByPk(id)
+
+    if (!check) throw new BadRequestError(`Tidak ada categories dengan id: ${id}`)
+
+    const result = await categoriesDPM.update({
+        name,
+        imageId,
+        about,
+        visi
+    }, { where: { id: id } })
+
+    return result
+}
+
 module.exports = {
     createDPM,
     showAll,
-    deleteDPM
+    deleteDPM,
+    updateDPM
 }
