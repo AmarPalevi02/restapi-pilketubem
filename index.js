@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan')
 const errorHendelerMiddlewares = require('./app/middlewares/hendeler-error')
 const NotFound = require('./app/middlewares/not-found')
-const port = 3000
+const port = 9000
 const cors = require("cors")
 
 app.use(logger('dev'))

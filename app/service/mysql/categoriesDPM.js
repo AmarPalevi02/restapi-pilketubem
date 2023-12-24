@@ -1,6 +1,7 @@
 const { where } = require('sequelize')
 const categoriesDPM = require('../../api/v1/categoriesDPM/model')
 const { BadRequestError } = require('../../errors')
+const Image = require('../../api/v1/images/model')
 
 const createDPM = async (req) => {
     const {
@@ -21,7 +22,11 @@ const createDPM = async (req) => {
 }
 
 const showAll = async () => {
-    const result = await categoriesDPM.findAll()
+    const result = await categoriesDPM.findAll({
+        include: [
+            Image
+        ]
+    })
 
     return result
 }

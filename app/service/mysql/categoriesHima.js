@@ -1,4 +1,5 @@
 const categoriesHIMA = require('../../api/v1/categoriesHiMA/mode')
+const Image = require('../../api/v1/images/model')
 const { BadRequestError } = require('../../errors')
 
 const createHima = async (req) => {
@@ -20,7 +21,11 @@ const createHima = async (req) => {
 }
 
 const showAll = async () => {
-    const result = await categoriesHIMA()
+    const result = await categoriesHIMA.findAll({
+        include: [
+            Image
+        ]
+    })
 
     return result
 }
