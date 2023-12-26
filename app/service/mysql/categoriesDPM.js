@@ -1,4 +1,3 @@
-const { where } = require('sequelize')
 const categoriesDPM = require('../../api/v1/categoriesDPM/model')
 const { BadRequestError } = require('../../errors')
 const Image = require('../../api/v1/images/model')
