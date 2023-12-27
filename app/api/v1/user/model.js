@@ -62,9 +62,14 @@ const Users = db.define('users', {
         allowNull: false,
         defaultValue: 'user',
     },
-    // otp: {
-    //     type:
-    // }
+    otp: {
+        type: DataTypes.STRING,
+        validate: {
+            notEmpty: {
+                msg: "OTP harus d isi"
+            }
+        }
+    }
 }, {
     hooks: {
         beforeSave: async (user) => {
